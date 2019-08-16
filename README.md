@@ -1,3 +1,11 @@
+To install the project:
+1) Download the repo.
+2) set up virtual env for python 3:
+    1) python3 -m venv <name and location of the venv dir>
+    2) source <path to env>/bin/activate
+    3) pip install --upgrade -r requirements.txt
+    4) python -m flask run
+
 API endpoints:
 
 1) '/' --> return a index page for a rough interface to input data into the game
