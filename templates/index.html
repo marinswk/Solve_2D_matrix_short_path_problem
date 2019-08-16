@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Puzzle Solver</title>
+</head>
+<body>
+    <h3 class="display-1">Solve 2d Matrix Puzzle</h3>
+    <hr>
+
+    <form class="form-inline" method="POST" action="{{ url_for('challenge_endpoints.solve_puzzle') }}">
+        <div class="form-group">
+            <div class="input-group">
+
+                <h4> Square Matrix Size </h4>
+                <input type="text" name="n" class="form-control" required> <br>
+
+                <textarea name="grid">Example grid format:
+                    ['--m','-x-','-p-'] (m=beginning, p=end, x=obstacle, -=free cell)
+                </textarea>
+                <br>
+                <br>
+
+                <button type="submit" class="btn btn-primary">Find Shortest path</button>
+            </div>
+        </div>
+    </form>
+
+    {% if error_flag == 'False' %}
+        <h4 style="color: green;">paths: {{ message }}</h4>
+        <h4 style="color: green;">error_flag: {{ error_flag }}</h4>
+    {% elif error_flag == 'True'%}
+        <h4 style="color: red;">error_flag: {{ error_flag }}</h4>
+        <h4 style="color: red;">paths: []</h4>
+    {% endif %}
+
+    <br><br>
+    <hr>
+    <form class="form-inline" method="POST" action="{{ url_for('challenge_log_endpoints.get_log') }}">
+        <div class="form-group">
+            <div class="input-group">
+                <button type="submit" class="btn btn-primary">Get latest executions</button>
+            </div>
+        </div>
+    </form>
+    <br><br>
+
+    {% if logs_list %}
+        <span style="white-space: pre-wrap">{{ logs_list }}</span>
+    {% endif %}
+
+</body>
+</html>
