@@ -22,7 +22,9 @@ def index():
     message = request.args.get('message')
     logs_list = request.args.get('logs_list')
 
-    if message and error_flag:
+    if message or error_flag:
+        if not message:
+            message = []
         return render_template('index.html', message=message, error_flag=error_flag)
     elif logs_list:
         return render_template('index.html', logs_list=logs_list)
